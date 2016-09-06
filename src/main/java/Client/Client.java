@@ -11,12 +11,14 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author skole
  */
-public class Main {
+public class Client {
 
     /**
      * @param args the command line arguments
@@ -40,6 +42,23 @@ public class Main {
   {
     output.println(msg);
   }
+  
+//  public void stop() throws IOException{
+//    output.println(ProtocolStrings.STOP);
+//  }
+  
+//  public String receive()
+//  {
+//    String msg = input.nextLine();
+//    if(msg.equals(ProtocolStrings.STOP)){
+//      try {
+//        socket.close();
+//      } catch (IOException ex) {
+//        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+//      }
+//    }
+//    return msg;
+//  }
     
     public static void main(String[] args) {
         // TODO code application logic here
