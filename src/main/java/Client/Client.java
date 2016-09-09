@@ -5,59 +5,43 @@
  */
 package Client;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author skole
  */
-public class Client {
+public class Client extends javax.swing.JFrame {
 
-    /**
-     * @param args the command line arguments
-     */
     Socket socket;
     private int port;
     private InetAddress IpAddress;
     private Scanner input;
-    private PrintWriter output;
+    private PrintWriter writer;
+
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+        new GUI().setVisible(true);
+    }
 
     public void connect(String address, int port) throws UnknownHostException, IOException {
         this.port = port;
         IpAddress = InetAddress.getByName(address);
         socket = new Socket(IpAddress, port);
         input = new Scanner(socket.getInputStream());
-        output = new PrintWriter(socket.getOutputStream(), true);  //Set to true, to get auto flush behaviour
+        writer = new PrintWriter(socket.getOutputStream(), true);  //Set to true, to get auto flush behaviour
     }
 
     public void send(String msg) {
-        output.println(msg);
-    }
-
-//  public void stop() throws IOException{
-//    output.println(ProtocolStrings.STOP);
-//  }
-//  public String receive()
-//  {
-//    String msg = input.nextLine();
-//    if(msg.equals(ProtocolStrings.STOP)){
-//      try {
-//        socket.close();
-//      } catch (IOException ex) {
-//        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-//      }
-//    }
-//    return msg;
-//  }
-    public static void main(String[] args) {
-        // TODO code application logic here
+        writer.println(msg);
     }
 
 }
